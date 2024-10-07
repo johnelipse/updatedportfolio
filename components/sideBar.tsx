@@ -44,7 +44,7 @@ export default function EnhancedSidebar() {
 
   return (
     <motion.aside
-      className="fixed top-0 left-0 h-full bg-gradient-to-b from-gray-900 to-black text-white shadow-lg overflow-hidden"
+      className="fixed top-0 left-0 h-full sidebar-set bg-gradient-to-b from-gray-900 to-black text-white shadow-lg overflow-hidden"
       animate={{ width: isExpanded ? "250px" : "80px" }}
       transition={{ duration: 0.3 }}
     >
