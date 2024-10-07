@@ -1,7 +1,9 @@
+import EnhancedSidebar from "@/components/sideBar";
+
 export default function Home() {
   return (
-<div>
-  <p>hey</p>
-</div>
+    <div>
+      <EnhancedSidebar />
+    </div>
   );
 }
