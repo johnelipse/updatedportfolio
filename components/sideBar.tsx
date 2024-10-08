@@ -14,6 +14,7 @@ import {
   Facebook,
   Github,
   Linkedin,
+  SquareDashedKanban,
 } from "lucide-react";
 
 export default function EnhancedSidebar() {
@@ -25,6 +26,7 @@ export default function EnhancedSidebar() {
     { href: "#portfolio", icon: Briefcase, label: "PORTFOLIO" },
     { href: "#services", icon: BarChart2, label: "SERVICES" },
     { href: "#contact-me", icon: MapPin, label: "CONTACT ME" },
+    { href: "/login", icon: SquareDashedKanban, label: "DASHBOARD" },
   ];
 
   const socialLinks = [

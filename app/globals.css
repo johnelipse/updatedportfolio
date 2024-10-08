@@ -65,6 +65,10 @@
   }
 }
 
+.resize {
+  resize: none;
+}
+
 @media (max-width: 760px) {
   .sidebar-set {
     left: -100%;

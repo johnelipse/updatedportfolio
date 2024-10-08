@@ -6,6 +6,7 @@ import {
   Home,
   MapPin,
   MenuIcon,
+  SquareDashedKanban,
   UserCheck,
 } from "lucide-react";
 import Link from "next/link";
@@ -35,6 +36,11 @@ const navBtns = [
     icon: <MapPin className="h-4 w-4" />,
     title: "CONTACT ME",
     link: "#contact-me",
+  },
+  {
+    icon: <SquareDashedKanban className="h-4 w-4" />,
+    title: "DASHBOARD",
+    link: "/login",
   },
 ];
 
