@@ -85,3 +85,45 @@ export async function getLatestProjects(count: number = 3) {
     return [];
   }
 }
+
+export async function fetchStats() {
+  try {
+    const totalViews = await db.pageView.count();
+    const ratings = await db.rating.findMany();
+    const averageRating =
+      ratings.length > 0
+        ? ratings.reduce((sum, rating) => sum + rating.value, 0) /
+          ratings.length
+        : 0;
+    const uniqueVisitors = await db.visitor.count();
+
+    return {
+      totalViews,
+      averageRating,
+      uniqueVisitors,
+    };
+  } catch (error) {
+    console.error("Failed to fetch stats:", error);
+    return {
+      totalViews: 0,
+      averageRating: 0,
+      uniqueVisitors: 0,
+    };
+  }
+}
+
+export async function incrementPageView() {
+  try {
+    await db.pageView.create({ data: {} });
+  } catch (error) {
+    console.error("Failed to increment page view:", error);
+  }
+}
+
+export async function addRating(value: number) {
+  try {
+    await db.rating.create({ data: { value } });
+  } catch (error) {
+    console.error("Failed to add rating:", error);
+  }
+}

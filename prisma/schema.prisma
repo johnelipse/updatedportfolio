@@ -38,3 +38,29 @@ model Project {
   User        User?    @relation(fields: [userId], references: [id])
   userId      String?  @db.ObjectId
 }
+
+
+model PageView {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  visitorId String?  @db.ObjectId
+  visitor   Visitor? @relation(fields: [visitorId], references: [id])
+}
+
+model Rating {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  value     Float
+  createdAt DateTime @default(now())
+  visitorId String?  @db.ObjectId
+  visitor   Visitor? @relation(fields: [visitorId], references: [id])
+}
+
+model Visitor {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime   @default(now())
+  lastVisit DateTime   @default(now())
+  pageViews PageView[]
+  ratings   Rating[]
+}
