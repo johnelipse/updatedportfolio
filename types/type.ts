@@ -14,6 +14,8 @@ export type UserProps = {
 export type ProjectProps = {
   title: string;
   description: string;
+  id?: string;
+  slug: string;
   gitLink: string;
   liveLink: string;
   imageUrl: string;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TextInput from "../formInputs/textInput";
@@ -8,24 +9,67 @@ import { useForm } from "react-hook-form";
 import { ProjectProps } from "@/types/type";
 import SubmitButton from "../formInputs/submitButton";
 import { Plus } from "lucide-react";
+import addProject, { editProject } from "@/Actions/ProjectActions";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export const description =
   "A product edit page. The product edit page has a form to edit the product details, stock, product category, product status, and product images. The product edit page has a sidebar navigation and a main content area. The main content area has a form to edit the product details, stock, product category, product status, and product images. The sidebar navigation has links to product details, stock, product category, product status, and product images.";
 
-export function CreateProject() {
+export function CreateProject({ userData }: { userData: ProjectProps }) {
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<ProjectProps>();
-  const [imageUrl, setImageUrl] = useState("/profile2.jpg");
+  } = useForm<ProjectProps>({ defaultValues: userData });
+  const [imageUrl, setImageUrl] = useState(
+    userData?.imageUrl || "/profile2.jpg"
+  );
   const [loading, setLoading] = useState(false);
-
-  function submit(data: ProjectProps) {
+  const router = useRouter();
+  const id = userData?.id;
+  async function submit(data: ProjectProps) {
     data.imageUrl = imageUrl;
-    console.log(data);
-    reset();
+    data.slug = data.title.trim().split(" ").join("-").toLowerCase();
+    if (userData) {
+      try {
+        setLoading(true);
+        await editProject(
+          {
+            title: data.title,
+            imageUrl: data.imageUrl,
+            liveLink: data.liveLink,
+            gitLink: data.gitLink,
+            description: data.description,
+            slug: data.slug,
+          },
+          id as string
+        );
+        toast.success("Project updated successfully.");
+        router.push("/projects");
+        router.refresh();
+      } catch (error) {
+        console.log(error);
+        toast.error("failed to update Project");
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      try {
+        reset();
+        setLoading(true);
+        await addProject(data);
+        toast.success("Project created successfully.");
+        router.push("/projects");
+        router.refresh();
+      } catch (error) {
+        console.log(error);
+        toast.error("failed to create the project.");
+      } finally {
+        setLoading(false);
+      }
+    }
   }
 
   return (
@@ -121,17 +165,31 @@ export function CreateProject() {
                     <CardTitle>Create Project</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div>
-                      <SubmitButton
-                        size={"sm"}
-                        className="w-full"
-                        buttonIcon={Plus}
-                        title="Create Project"
-                        loadingTitle="creating..."
-                        showIcon
-                        loading={loading}
-                      />
-                    </div>
+                    {userData ? (
+                      <div>
+                        <SubmitButton
+                          size={"sm"}
+                          className="w-full"
+                          buttonIcon={Plus}
+                          title="Update Project"
+                          loadingTitle="updating..."
+                          showIcon
+                          loading={loading}
+                        />
+                      </div>
+                    ) : (
+                      <div>
+                        <SubmitButton
+                          size={"sm"}
+                          className="w-full"
+                          buttonIcon={Plus}
+                          title="Create Project"
+                          loadingTitle="creating..."
+                          showIcon
+                          loading={loading}
+                        />
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </div>

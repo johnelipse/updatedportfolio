@@ -38,7 +38,6 @@ export default function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -83,17 +82,17 @@ export default function DataTable<TData, TValue>({
         </div>
         <div className="flex items-center gap-2 ">
           <DateRangeFilter
-          className="lg:block md:hidden hidden"
+            className="lg:block md:hidden hidden"
             data={data}
             onFilter={setFilteredData}
             setIsSearch={setIsSearch}
           />
-          <DateFilters 
+          <DateFilters
             data={data}
             onFilter={setFilteredData}
             setIsSearch={setIsSearch}
           />
-        
+
           <DataTableViewOptions table={table} />
         </div>
       </div>

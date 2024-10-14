@@ -22,6 +22,9 @@ import {
 } from "@/components/ui/alert-dialog";
 import { LoaderCircle, MoreHorizontal, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import { deleteProject } from "@/Actions/ProjectActions";
+import { useRouter } from "next/navigation";
 type ActionColumnProps = {
   row: any;
   model: any;
@@ -30,32 +33,31 @@ type ActionColumnProps = {
   // revPath: string;
 };
 export default function ActionColumn({
-  row,
   model,
   editEndpoint,
   id = "",
 }: ActionColumnProps) {
-  const isActive = row.isActive;
-  // const router = useRouter();
+  // const isActive = row.isActive;
+  const router = useRouter();
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  // async function handleDelete() {
-  //   try {
-  //     setLoading(true);
-  //     const deletedSubscriber = await deleteSubscriber({ id });
-  //     toast.success("Subscriber deleted successfully.");
-  //     router.push("/dashboard/subscribers");
-  //     router.refresh();
-  //     window.location.reload();
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error("Something went wrong");
-  //   } finally {
-  //     setLoading(false);
-  //     setIsAlertOpen(false);
-  //     window.location.reload();
-  //   }
-  // }
+  async function handleDelete() {
+    try {
+      setLoading(true);
+      await deleteProject({ id });
+      toast.success("Project deleted successfully.");
+      router.push("/projects");
+      router.refresh();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    } finally {
+      setLoading(false);
+      setIsAlertOpen(false);
+      window.location.reload();
+    }
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -103,7 +105,7 @@ export default function ActionColumn({
                   <span>Deleting...</span>
                 </Button>
               ) : (
-                <Button variant={"destructive"}>
+                <Button onClick={() => handleDelete()} variant={"destructive"}>
                   Permanently Delete
                 </Button>
               )}
