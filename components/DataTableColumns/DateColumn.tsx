@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getNormalDate } from "@/lib/getNormalDate";
 import React from "react";
@@ -21,4 +22,3 @@ export default function DateColumn({
   // console.log(imageUrl);
   return <div className="">{date}</div>;
 }
-
