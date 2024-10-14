@@ -22,7 +22,7 @@ import { useRouter } from "next/navigation";
 export const description =
   "A sign up form with first name, last name, email and password inside a card. There's an option to sign up with GitHub and a link to login if you already have an account";
 
-export function SignupForm({ initialData }: { initialData: UserProps }) {
+export function SignupForm({ initialData }: { initialData?: UserProps }) {
   const {
     register,
     reset,
@@ -36,7 +36,7 @@ export function SignupForm({ initialData }: { initialData: UserProps }) {
   );
   const [userErr, setUserErr] = useState("");
   const router = useRouter();
-  const id = initialData.id;
+  const id = initialData?.id;
 
   async function submit(data: UserProps) {
     data.imageUrl = imageUrl;
