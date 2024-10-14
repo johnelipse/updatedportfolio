@@ -140,7 +140,7 @@ export default function EnhancedMainContent() {
           </motion.div>
           <motion.div {...fadeInUp} className="relative">
             <Image
-              src="/profile2.jpg"
+              src="/john.png"
               alt="Banyweire John"
               width={400}
               height={400}
@@ -196,7 +196,7 @@ export default function EnhancedMainContent() {
                 </svg>
               </span>
               <span className="text-sm font-medium transition-all group-hover:me-4">
-                Portfolio
+                Projects
               </span>
             </Link>
           </div>
@@ -210,7 +210,7 @@ export default function EnhancedMainContent() {
       >
         <motion.div {...fadeInUp}>
           <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">
-            My Portfolio
+            My Projects
           </h2>
           <PortfolioCards />
         </motion.div>

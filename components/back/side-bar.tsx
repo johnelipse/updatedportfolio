@@ -29,17 +29,17 @@ const socialBtns = [
   {
     icon: <GithubIcon className="h-4 w-4" />,
     title: " GitHub",
-    link: "/",
+    link: "https://github.com/johnelipse",
   },
   {
     icon: <LinkedinIcon className="h-4 w-4" />,
     title: " LinkedIn",
-    link: "/",
+    link: "https://www.linkedin.com/in/banyweire-john-a57692326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
   {
     icon: <TwitterIcon className="h-4 w-4" />,
     title: "Twitter",
-    link: "/",
+    link: "https://x.com/JohnJ53991?t=Zif90Q51W_1QNy_eq5mKEQ&s=09",
   },
 ];
 

@@ -11,15 +11,14 @@ import {
   BarChart2,
   MapPin,
   ChevronRight,
-  Facebook,
-  Github,
-  Linkedin,
   SquareDashedKanban,
+  GithubIcon,
+  LinkedinIcon,
+  TwitterIcon,
 } from "lucide-react";
 
 export default function EnhancedSidebar() {
   const [isExpanded, setIsExpanded] = useState(true);
-
   const menuItems = [
     { href: "#name-section", icon: Home, label: "HOME" },
     { href: "#about-me", icon: UserCheck, label: "ABOUT ME" },
@@ -31,16 +30,16 @@ export default function EnhancedSidebar() {
 
   const socialLinks = [
     {
-      icon: <Facebook className="h-4 w-4" />,
-      link: "/",
+      icon: <GithubIcon className="h-4 w-4" />,
+      link: "https://github.com/johnelipse",
     },
     {
-      icon: <Github className="h-4 w-4" />,
-      link: "/",
+      icon: <LinkedinIcon className="h-4 w-4" />,
+      link: "https://www.linkedin.com/in/banyweire-john-a57692326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
     {
-      icon: <Linkedin className="h-4 w-4" />,
-      link: "/",
+      icon: <TwitterIcon className="h-4 w-4" />,
+      link: "https://x.com/JohnJ53991?t=Zif90Q51W_1QNy_eq5mKEQ&s=09",
     },
   ];
 
@@ -73,7 +72,7 @@ export default function EnhancedSidebar() {
         animate={{ x: isExpanded ? "-50%" : "-30px" }}
       >
         <Image
-          src="/profile2.jpg"
+          src={"/john.png"}
           alt="John"
           width={88}
           height={88}

@@ -20,7 +20,6 @@ export async function createUser(data: UserProps) {
   const newUser = await db.user.create({
     data: { firstName, lastName, email, imageUrl, password: hashedPassword },
   });
-  console.log(newUser);
   return {
     data: newUser,
     error: null,
@@ -35,7 +34,6 @@ export async function fetchSingleUser(id: string) {
         id,
       },
     });
-    console.log(userFetched);
     return userFetched;
   } catch (error) {
     console.log(error);
@@ -52,7 +50,6 @@ export async function editUserData(data: UserProps, id: string) {
 
       data,
     });
-    console.log(updatedUser);
     return updatedUser;
   } catch (error) {
     console.log(error);
