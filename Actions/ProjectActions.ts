@@ -67,3 +67,21 @@ export async function deleteProject({ id }: { id: string }) {
     console.log(error);
   }
 }
+
+export async function getLatestProjects(count: number = 3) {
+  try {
+    const projects = await db.project.findMany({
+      orderBy: { createdAt: "desc" },
+      take: count,
+      select: {
+        id: true,
+        title: true,
+        createdAt: true,
+      },
+    });
+    return projects;
+  } catch (error) {
+    console.error("Error fetching latest projects:", error);
+    return [];
+  }
+}

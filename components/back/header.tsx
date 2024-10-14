@@ -15,7 +15,7 @@ import {
 export default function HeaderComp() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <header className="bg-gray-800 bg-opacity-50 backdrop-blur-lg shadow-lg px-4 py-2 flex items-center justify-between">
+    <header className="bg-white/30 backdrop-blur-sm shadow-md px-4 py-2 flex items-center justify-between">
       <div className="flex items-center space-x-4">
         <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
           <SheetTrigger asChild>

@@ -48,7 +48,7 @@ export default function Sidebar() {
   const pathname = usePathname();
   const isActive = pathname === `/settings/${session?.user?.id}`;
   return (
-    <ScrollArea className="h-full py-4">
+    <ScrollArea className="h-full py-4 bg-white/60 backdrop-blur-sm">
       <div className="px-3 py-2">
         <h2 className="mb-2 px-4 text-lg font-semibold">Navigation</h2>
         <div className="space-y-1">

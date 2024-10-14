@@ -10,7 +10,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`${inter.className} min-h-screen flex flex-col`}>
+    <div className={`${inter.className} bg-black/5 min-h-screen flex flex-col`}>
       {/* Header */}
       <div className="fixed top-0 left-0 right-0 z-10">
         <HeaderComp />
@@ -21,7 +21,7 @@ export default function DashboardLayout({
         {" "}
         {/* Adjust top padding to account for fixed header */}
         {/* Sidebar for larger screens */}
-        <aside className="fixed top-[50px] left-0 bottom-0 bg-gray-800 bg-opacity-50 backdrop-blur-lg w-64 flex-shrink-0 hidden md:block border-r border-gray-700 overflow-y-auto">
+        <aside className="fixed top-[50px] left-0 bottom-0 bg-white/60 backdrop-blur-md w-64 flex-shrink-0 hidden md:block border-r shadow-md overflow-y-auto">
           <Sidebar />
         </aside>
         {/* Page content */}
