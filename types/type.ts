@@ -4,8 +4,10 @@ export type LoginProps = {
 };
 export type UserProps = {
   firstName: string;
+  id?: string;
   lastName: string;
   email: string;
+  imageUrl: string | null;
   password: string;
 };
 

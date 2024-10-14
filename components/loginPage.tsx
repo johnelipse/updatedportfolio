@@ -14,6 +14,9 @@ import { useForm } from "react-hook-form";
 import SubmitButton from "./formInputs/submitButton";
 import { useState } from "react";
 import { LoginProps } from "@/types/type";
+import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export const description =
   "A simple login form with email and password. The submit button says 'Sign in'.";
@@ -27,10 +30,34 @@ export function LoginForm() {
   } = useForm<LoginProps>();
 
   const [loading, setLoading] = useState(false);
-
-  function submit(data: LoginProps) {
-    console.log(data);
+  const router = useRouter();
+  async function submit(data: LoginProps) {
     reset();
+    try {
+      setLoading(true);
+      console.log("Attempting to sign in with credentials:", data);
+      const loginData = await signIn("credentials", {
+        ...data,
+        redirect: false,
+      });
+      console.log("SignIn response:", loginData);
+      if (loginData?.error) {
+        setLoading(false);
+        toast.error("Sign-in error: Check your credentials");
+      } else {
+        // Sign-in was successful
+
+        reset();
+        setLoading(false);
+        toast.success("Login Successful");
+        router.push("/dashboard");
+        router.refresh();
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error("Network Error:", error);
+      toast.error("Its seems something is wrong with your Network");
+    }
   }
 
   return (
