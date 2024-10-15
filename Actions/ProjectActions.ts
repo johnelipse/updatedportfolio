@@ -19,7 +19,11 @@ export default async function addProject(data: ProjectProps) {
 
 export async function fetchProjects() {
   try {
-    const fetchedProjects = await db.project.findMany();
+    const fetchedProjects = await db.project.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
     return fetchedProjects;
   } catch (error) {
     console.log(error);

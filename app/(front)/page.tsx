@@ -2,7 +2,7 @@ import Header from "@/components/headerMedium";
 import EnhancedMainContent from "@/components/mainBody";
 import EnhancedSidebar from "@/components/sideBar";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="flex bg-gradient-to-b from-gray-900 to-black">
       <div className="">

@@ -64,3 +64,11 @@ model Visitor {
   pageViews PageView[]
   ratings   Rating[]
 }
+
+model SendMail{
+ id           String     @id @default(auto()) @map("_id") @db.ObjectId 
+  name         String
+  email       String
+  subject     String
+  message     String
+}

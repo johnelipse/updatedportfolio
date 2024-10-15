@@ -11,10 +11,11 @@ import { CircleHelp } from "lucide-react";
 type TextInputProps = {
   register: any;
   errors: any;
-  label: string;
+  label?: string;
   type?: string;
   name: string;
   toolTipText?: string;
+  className?: string;
   unit?: string;
   placeholder?: string;
   icon?: any;
@@ -26,6 +27,7 @@ export default function TextInput({
   type = "text",
   name,
   toolTipText,
+  className,
   unit,
   icon,
   placeholder,
@@ -69,9 +71,10 @@ export default function TextInput({
             className={cn(
               "block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-sm",
               (errors[`${name}`] && "focus:ring-red-500 pl-8") ||
-                (icon && "pl-8")
+                (icon && "pl-8"),
+              className
             )}
-            placeholder={placeholder || label}
+            placeholder={placeholder || label || name}
           />
           {unit && (
             <p className="bg-white py-2 px-3 rounded-tr-md rounded-br-md absolute inset-y-0 right-1 my-[2px] flex items-center">
