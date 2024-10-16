@@ -7,6 +7,13 @@ export default withAuth({
     // error: '/error',
   },
 });
+
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: [
+    "/dashboard/:path*",
+    "/create-project/:path",
+    "/projects/:path",
+    `/settings/:path`,
+    `/update-project/:path`,
+  ],
 };

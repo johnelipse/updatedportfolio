@@ -10,7 +10,7 @@ export default async function Home() {
       </div>
       <div className="lg:ml-[17rem] md:ml-[17rem] ml-0">
         <Header />
-        <div className="px-2 margin-top">
+        <div className="px-2 pb-4 margin-top">
           <EnhancedMainContent />
         </div>
       </div>
