@@ -40,7 +40,7 @@ const navBtns = [
   {
     icon: <SquareDashedKanban className="h-4 w-4" />,
     title: "DASHBOARD",
-    link: "/login",
+    link: "/dashboard",
   },
 ];
 
@@ -71,7 +71,7 @@ export default function Header() {
           </SheetContent>
         </Sheet>
         <h1 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-          Your Name
+          Banyweire
         </h1>
       </div>
     </header>
