@@ -6,7 +6,6 @@ import TextArea from "../formInputs/textArea";
 import ImageInput from "../formInputs/imageInput";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ProjectProps } from "@/types/type";
 import SubmitButton from "../formInputs/submitButton";
 import { Plus } from "lucide-react";
 import addProject, { editProject } from "@/Actions/ProjectActions";
@@ -15,6 +14,16 @@ import { useRouter } from "next/navigation";
 
 export const description =
   "A product edit page. The product edit page has a form to edit the product details, stock, product category, product status, and product images. The product edit page has a sidebar navigation and a main content area. The main content area has a form to edit the product details, stock, product category, product status, and product images. The sidebar navigation has links to product details, stock, product category, product status, and product images.";
+
+export type ProjectProps = {
+  title: string;
+  description: string;
+  id?: string;
+  slug: string;
+  gitLink: string;
+  liveLink: string;
+  imageUrl: string;
+};
 
 export function CreateProject({ userData }: { userData?: ProjectProps }) {
   const {
