@@ -12,11 +12,14 @@ export type UserProps = {
 };
 
 export type ProjectProps = {
+  id: string;
   title: string;
-  description: string;
-  id?: string;
   slug: string;
+  description: string;
   gitLink: string;
   liveLink: string;
   imageUrl: string;
-};
+  createdAt?: Date;
+  updatedAt?: Date;
+  userId?: string | null;
+}[];

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { Download, Mail, Phone, MapPin } from "lucide-react";
+import { Download, Mail, Phone, MapPin, ChevronRight } from "lucide-react";
 import SparklesText from "./ui/sparkles-text";
 import PortfolioCards from "./portfolioCards";
 import EmailForm from "./email-form";
@@ -210,9 +210,20 @@ export default function EnhancedMainContent() {
         className="py-4 md:py-6 lg:py-8 max-w-7xl mx-auto"
       >
         <motion.div {...fadeInUp}>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">
-            My Projects
-          </h2>
+          <div className="flex justify-between items-center">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">
+              My Projects
+            </h2>
+            <span>
+              <Link
+                className="text-center flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500"
+                href="/all-projects"
+              >
+                See All
+                <ChevronRight className="w-4 h-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500" />
+              </Link>
+            </span>
+          </div>
           <PortfolioCards />
         </motion.div>
       </section>

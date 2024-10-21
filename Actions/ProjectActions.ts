@@ -1,8 +1,18 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { ProjectProps } from "@/types/type";
+// import { ProjectProps } from "@/types/type";
 import { revalidatePath } from "next/cache";
+
+export type ProjectProps = {
+  title: string;
+  description: string;
+  id?: string;
+  slug: string;
+  gitLink: string;
+  liveLink: string;
+  imageUrl: string;
+};
 
 export default async function addProject(data: ProjectProps) {
   try {
