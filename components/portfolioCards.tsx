@@ -5,8 +5,20 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { fetchProjects } from "@/Actions/ProjectActions";
-import { ProjectProps } from "@/types/type";
 import Link from "next/link";
+
+export type ProjectProps = {
+  title: string;
+  description: string;
+  id?: string;
+  slug: string;
+  gitLink: string;
+  liveLink: string;
+  imageUrl: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  userId?: string;
+};
 
 export default function PortfolioCards() {
   const fadeInUp = {
