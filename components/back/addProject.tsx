@@ -23,6 +23,9 @@ export type ProjectProps = {
   gitLink: string;
   liveLink: string;
   imageUrl: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  userId?: string;
 };
 
 export function CreateProject({ userData }: { userData?: ProjectProps }) {

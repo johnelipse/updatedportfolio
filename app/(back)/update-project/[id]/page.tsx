@@ -1,7 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getSingleProject } from "@/Actions/ProjectActions";
 import { CreateProject } from "@/components/back/addProject";
-import { ProjectProps } from "@/types/type";
 import React from "react";
+
+export type ProjectProps = {
+  title: string;
+  description: string;
+  id?: string;
+  slug: string;
+  gitLink: string;
+  liveLink: string;
+  imageUrl: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  userId?: string;
+};
 
 export default async function page({
   params: { id },
