@@ -1,14 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/back/side-bar";
 import HeaderComp from "@/components/back/header";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/config/auth";
+import { getServerSession } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session: any = await getServerSession(authOptions);
+  if (!session) {
+    return redirect("/login");
+  }
   return (
     <div className={`${inter.className} bg-black/5 min-h-screen flex flex-col`}>
       {/* Header */}
