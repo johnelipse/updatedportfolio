@@ -87,7 +87,7 @@ export default function ProjectsPage({
                       className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
                     >
                       <ExternalLink size={20} />
-                      <span>Live Demo</span>
+                      <span>go live</span>
                     </Link>
                   </CardFooter>
                 </Card>
