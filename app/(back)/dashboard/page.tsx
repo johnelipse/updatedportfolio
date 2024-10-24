@@ -20,7 +20,7 @@ export default function page() {
           <p className="text-sm text-muted-foreground">
             Start publishing your projects to engage your audience.
           </p>
-          <Link href="/add-project">
+          <Link href="/create-project">
             <Button className="mt-2 bg-[#f53b07]">
               <PlusCircle className="mr-2 h-4 w-4" />
               Add New Article
