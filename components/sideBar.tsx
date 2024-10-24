@@ -25,7 +25,7 @@ export default function EnhancedSidebar() {
     { href: "#portfolio", icon: Briefcase, label: "PORTFOLIO" },
     { href: "#services", icon: BarChart2, label: "SERVICES" },
     { href: "#contact-me", icon: MapPin, label: "CONTACT ME" },
-    { href: "/dashboard", icon: SquareDashedKanban, label: "DASHBOARD" },
+    { href: "/login", icon: SquareDashedKanban, label: "DASHBOARD" },
   ];
 
   const socialLinks = [
