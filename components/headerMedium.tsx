@@ -50,7 +50,12 @@ export default function Header() {
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+            >
               <MenuIcon className="h-5 w-5 text-white" />
             </Button>
           </SheetTrigger>

@@ -106,10 +106,10 @@ export default function EnhancedMainContent() {
                 download
                 className="group relative inline-flex items-center overflow-hidden rounded bg-emerald-500 lg:px-8 md:px-8 px-4 lg:py-3 md:py-3 py-2 text-white focus:outline-none focus:ring active:bg-emerald-600"
               >
-                <span className="absolute -end-full transition-all group-hover:end-4">
+                <span className="absolute -end-full font-bold transition-all group-hover:end-4">
                   <Download className="h-5 w-5" />
                 </span>
-                <span className="text-sm font-medium transition-all group-hover:me-4">
+                <span className="text-sm font-bold transition-all group-hover:me-4">
                   Download CV
                 </span>
               </Link>
@@ -169,10 +169,10 @@ export default function EnhancedMainContent() {
               href="#contact-me"
               className="group relative inline-flex items-center overflow-hidden rounded bg-emerald-500 px-8 py-3 text-white focus:outline-none focus:ring active:bg-emerald-600"
             >
-              <span className="absolute -end-full transition-all group-hover:end-4">
+              <span className="absolute -end-full font-bold transition-all group-hover:end-4">
                 <Mail className="h-5 w-5" />
               </span>
-              <span className="text-sm font-medium transition-all group-hover:me-4">
+              <span className="text-sm font-bold transition-all group-hover:me-4">
                 Contact Me
               </span>
             </Link>
