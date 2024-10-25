@@ -294,9 +294,9 @@ export default function EnhancedMainContent() {
       </section>
 
       {/* Services Section */}
-      <section className="py-4 md:py-6 lg:py-8  max-w-7xl mx-auto">
+      <section className="py-4 md:py-6 lg:py-8  max-w-7xl ">
         <motion.div {...fadeInUp}>
-          <h2 className="text-3xl sm:text-4xl font-bold lg:mb-8 md:mb-8 mb-3 text-center text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">
+          <h2 className="text-3xl sm:text-4xl font-bold lg:mb-8 md:mb-8 mb-3  text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">
             What I Do?
           </h2>
           <motion.div
