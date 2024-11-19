@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ProvidersComp from "@/components/providers";
 import { siteConfig } from "@/config/site";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: {
@@ -78,7 +79,10 @@ export default function RootLayout({
   return (
     <html className="scroll-behavior" lang="en">
       <body className="body-font scroll-behavior">
-        <ProvidersComp>{children}</ProvidersComp>
+        <ProvidersComp>
+          {children}
+          <Analytics />
+        </ProvidersComp>
       </body>
     </html>
   );
