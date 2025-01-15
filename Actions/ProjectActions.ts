@@ -20,7 +20,8 @@ export default async function addProject(data: ProjectProps) {
     const newProject = await db.project.create({
       data: { title, description, slug, gitLink, liveLink, imageUrl },
     });
-    revalidatePath("/projects");
+    revalidatePath("/all-projects");
+    revalidatePath("/");
     return newProject;
   } catch (error) {
     console.log(error);
