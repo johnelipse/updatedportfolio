@@ -59,11 +59,10 @@ export default function EnhancedMainContent() {
       }, 100);
       return () => clearTimeout(timeout);
     } else {
-      // Reset after the text is fully typed out
       const resetTimeout = setTimeout(() => {
         setTypedText("");
         setCurrentIndex(0);
-      }, 2000); // 2 seconds delay before restarting
+      }, 2000);
       return () => clearTimeout(resetTimeout);
     }
   }, [currentIndex, fullText]);
