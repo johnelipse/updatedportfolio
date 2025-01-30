@@ -80,7 +80,7 @@ export default function RotatingParticlesLoader() {
           ></div>
         ))}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-white text-lg font-bold">Loading...</span>
+          <span className="text-white text-lg font-bold">John...</span>
         </div>
       </div>
     </div>
