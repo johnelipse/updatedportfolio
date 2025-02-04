@@ -11,6 +11,8 @@ import { Plus } from "lucide-react";
 import addProject, { editProject } from "@/Actions/ProjectActions";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
 
 export const description =
   "A product edit page. The product edit page has a form to edit the product details, stock, product category, product status, and product images. The product edit page has a sidebar navigation and a main content area. The main content area has a form to edit the product details, stock, product category, product status, and product images. The sidebar navigation has links to product details, stock, product category, product status, and product images.";
@@ -20,7 +22,7 @@ export type ProjectProps = {
   description: string;
   id?: string;
   slug: string;
-  gitLink: string;
+  gitLink?: string | undefined;
   liveLink: string;
   imageUrl: string;
   createdAt?: Date;
@@ -52,7 +54,7 @@ export function CreateProject({ userData }: { userData?: ProjectProps }) {
             title: data.title,
             imageUrl: data.imageUrl,
             liveLink: data.liveLink,
-            gitLink: data.gitLink,
+            gitLink: data.gitLink as string,
             description: data.description,
             slug: data.slug,
           },
@@ -69,10 +71,10 @@ export function CreateProject({ userData }: { userData?: ProjectProps }) {
       }
     } else {
       try {
-        reset();
         setLoading(true);
         await addProject(data);
         toast.success("Project created successfully.");
+        reset();
         router.push("/projects");
         router.refresh();
       } catch (error) {
@@ -130,12 +132,25 @@ export function CreateProject({ userData }: { userData?: ProjectProps }) {
                   </CardHeader>
                   <CardContent>
                     <div className="grid gap-6">
-                      <div className="grid gap-3">
+                      {/* <div className="grid gap-3">
                         <TextInput
                           register={register}
                           errors={errors}
                           label="Project github Link"
                           name="gitLink"
+                        />
+                      </div> */}
+                      <div className="grid w-full items-center gap-3">
+                        <Label htmlFor="gitLink">Project github Link</Label>
+                        <Input
+                          type="link"
+                          id="gitLink"
+                          placeholder="Enter Project github Link"
+                          className="w-full focus:ring-2 
+                          text-sm
+                          placeholder:text-gray-400 placeholder:text-sm focus:ring-inset
+                          outline-none focus:ring-indigo-600"
+                          {...register("gitLink")}
                         />
                       </div>
                       <div className="grid gap-3">

@@ -4,7 +4,16 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { Download, Mail, Phone, MapPin, ChevronRight } from "lucide-react";
+import {
+  Download,
+  Mail,
+  Phone,
+  MapPin,
+  ChevronRight,
+  GithubIcon,
+  LinkedinIcon,
+  TwitterIcon,
+} from "lucide-react";
 import SparklesText from "./ui/sparkles-text";
 import PortfolioCards from "./portfolioCards";
 import EmailForm from "./email-form";
@@ -13,6 +22,21 @@ type SkillBarProps = {
   skill: string;
   percentage: number;
 };
+
+const socialLinks = [
+  {
+    icon: <GithubIcon className="h-4 w-4" />,
+    link: "https://github.com/johnelipse",
+  },
+  {
+    icon: <LinkedinIcon className="h-4 w-4" />,
+    link: "https://www.linkedin.com/in/banyweire-john-a57692326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+  },
+  {
+    icon: <TwitterIcon className="h-4 w-4" />,
+    link: "https://x.com/JohnJ53991?t=Zif90Q51W_1QNy_eq5mKEQ&s=09",
+  },
+];
 
 const SkillBar: React.FC<SkillBarProps> = ({ skill, percentage }) => {
   const controls = useAnimation();
@@ -280,12 +304,12 @@ export default function EnhancedMainContent() {
                 initial="initial"
                 animate="animate"
               >
-                <SkillBar skill="HTML5" percentage={95} />
-                <SkillBar skill="CSS" percentage={90} />
-                <SkillBar skill="JavaScript" percentage={85} />
-                <SkillBar skill="Canva" percentage={80} />
-                <SkillBar skill="VSDC" percentage={75} />
-                <SkillBar skill="Adobe Express" percentage={70} />
+                <SkillBar skill="HTML5" percentage={98} />
+                <SkillBar skill="CSS" percentage={98} />
+                <SkillBar skill="JavaScript" percentage={95} />
+                <SkillBar skill="Canva" percentage={90} />
+                <SkillBar skill="VSDC" percentage={85} />
+                <SkillBar skill="Adobe Express" percentage={75} />
               </motion.div>
             </div>
           </div>
@@ -363,6 +387,26 @@ export default function EnhancedMainContent() {
                   <span>Kampala, Uganda</span>
                 </div>
               </div>
+
+              <motion.div className="p-4 flex  gap-4">
+                {socialLinks.map((link, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={link.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#00a978ff] hover:text-white transition-colors duration-300"
+                    >
+                      {link.icon}
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
             <EmailForm />
           </div>

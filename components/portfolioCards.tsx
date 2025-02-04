@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { Contact, ExternalLink, Github } from "lucide-react";
 import { fetchProjects } from "@/Actions/ProjectActions";
 import Link from "next/link";
 
@@ -102,14 +102,25 @@ export default function PortfolioCards() {
                 >
                   <ExternalLink size={16} className="mr-1" /> Live
                 </Link>
-                <Link
-                  href={project.gitLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-400 hover:text-purple-300 flex items-center transition duration-300"
-                >
-                  <Github size={16} className="mr-1" /> GitHub
-                </Link>
+                {project.gitLink ? (
+                  <Link
+                    href={project.gitLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-400 hover:text-purple-300 flex items-center transition duration-300"
+                  >
+                    <Github size={16} className="mr-1" /> GitHub
+                  </Link>
+                ) : (
+                  <Link
+                    href="https://wa.me/message/AAMYVSAYB4YOC1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700 flex items-center transition duration-300"
+                  >
+                    <Contact size={16} className="mr-1" /> Contact Developer
+                  </Link>
+                )}
               </div>
             </div>
           </motion.div>

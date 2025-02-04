@@ -13,7 +13,7 @@ type TextInputProps = {
   errors: any;
   label?: string;
   type?: string;
-  name: string;
+  name?: string;
   toolTipText?: string;
   className?: string;
   unit?: string;

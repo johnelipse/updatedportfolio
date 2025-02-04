@@ -9,7 +9,7 @@ export type ProjectProps = {
   description: string;
   id?: string;
   slug: string;
-  gitLink: string;
+  gitLink?: string | undefined;
   liveLink: string;
   imageUrl: string;
 };

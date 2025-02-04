@@ -12,9 +12,6 @@ import {
   MapPin,
   ChevronRight,
   SquareDashedKanban,
-  GithubIcon,
-  LinkedinIcon,
-  TwitterIcon,
 } from "lucide-react";
 
 export default function EnhancedSidebar() {
@@ -26,21 +23,6 @@ export default function EnhancedSidebar() {
     { href: "#services", icon: BarChart2, label: "SERVICES" },
     { href: "#contact-me", icon: MapPin, label: "CONTACT ME" },
     { href: "/dashboard", icon: SquareDashedKanban, label: "DASHBOARD" },
-  ];
-
-  const socialLinks = [
-    {
-      icon: <GithubIcon className="h-4 w-4" />,
-      link: "https://github.com/johnelipse",
-    },
-    {
-      icon: <LinkedinIcon className="h-4 w-4" />,
-      link: "https://www.linkedin.com/in/banyweire-john-a57692326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    },
-    {
-      icon: <TwitterIcon className="h-4 w-4" />,
-      link: "https://x.com/JohnJ53991?t=Zif90Q51W_1QNy_eq5mKEQ&s=09",
-    },
   ];
 
   return (
@@ -112,29 +94,6 @@ export default function EnhancedSidebar() {
           </motion.div>
         ))}
       </nav>
-
-      <motion.footer
-        className="absolute bottom-0 left-0 right-0 p-4 flex justify-center gap-4"
-        animate={{ justifyContent: isExpanded ? "center" : "flex-start" }}
-      >
-        {socialLinks.map((link, index) => (
-          <motion.div
-            key={index}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <Link
-              href={link.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#00a978ff] hover:text-white transition-colors duration-300"
-            >
-              {link.icon}
-            </Link>
-          </motion.div>
-        ))}
-      </motion.footer>
     </motion.aside>
   );
 }

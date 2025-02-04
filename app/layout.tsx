@@ -77,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="scroll-behavior" lang="en">
+    <html className="scroll-behavior scrollbar-custom" lang="en">
       <body className="body-font scroll-behavior">
         <ProvidersComp>
           {children}

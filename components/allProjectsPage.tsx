@@ -2,26 +2,23 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, Contact } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import { Project } from "@prisma/client";
 
 export type ProjectProps = {
   title: string;
   description: string;
   id?: string;
   slug: string;
-  gitLink: string;
+  gitLink?: string | undefined;
   liveLink: string;
   imageUrl: string;
 };
 
-export default function ProjectsPage({
-  projects,
-}: {
-  projects: ProjectProps[];
-}) {
+export default function ProjectsPage({ projects }: { projects: Project[] }) {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -71,15 +68,25 @@ export default function ProjectsPage({
                     <p className="text-gray-300 mb-4">{project.description}</p>
                   </CardContent>
                   <CardFooter className="bg-transparent  border-t border-gray-800 px-4 py-2 flex justify-between">
-                    <Link
-                      href={project.gitLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
-                    >
-                      <Github size={20} />
-                      <span>GitHub</span>
-                    </Link>
+                    {project.gitLink ? (
+                      <Link
+                        href={project.gitLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-purple-400 hover:text-purple-300 flex items-center transition duration-300"
+                      >
+                        <Github size={16} className="mr-1" /> GitHub
+                      </Link>
+                    ) : (
+                      <Link
+                        href="https://wa.me/message/AAMYVSAYB4YOC1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-700 flex items-center transition duration-300"
+                      >
+                        <Contact size={16} className="mr-1" /> Contact Developer
+                      </Link>
+                    )}
                     <Link
                       href={project.liveLink}
                       target="_blank"
