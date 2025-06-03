@@ -1,13 +1,14 @@
+"use client";
 import DataTable from "@/components/DataTableComponents/DataTable";
 import TableHeader from "@/components/DataTableComponents/TableHeader";
 import React from "react";
 import { columns } from "./columns";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { fetchProjects } from "@/Actions/ProjectActions";
+import { useProjects } from "@/hooks/useProjects";
 
-export default async function page() {
-  const projects = (await fetchProjects()) || [];
+export default function Dashpage() {
+  const { projects } = useProjects();
   return (
     <div>
       <div className="lg:p-8 md:p-8 ">

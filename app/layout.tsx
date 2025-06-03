@@ -3,6 +3,7 @@ import "./globals.css";
 import ProvidersComp from "@/components/providers";
 import { siteConfig } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -79,10 +80,12 @@ export default function RootLayout({
   return (
     <html className="scroll-behavior scrollbar-custom" lang="en">
       <body className="body-font scroll-behavior">
-        <ProvidersComp>
-          {children}
-          <Analytics />
-        </ProvidersComp>
+        <ReactQueryProvider>
+          <ProvidersComp>
+            {children}
+            <Analytics />
+          </ProvidersComp>
+        </ReactQueryProvider>
       </body>
     </html>
   );

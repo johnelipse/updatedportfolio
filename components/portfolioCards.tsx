@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Contact, ExternalLink, Github } from "lucide-react";
 import { fetchProjects } from "@/Actions/ProjectActions";
 import Link from "next/link";
+import { useProjects } from "@/hooks/useProjects";
+import { Project } from "@prisma/client";
+import ProjectSkeleton from "./skeleton-loader";
 
 export type ProjectProps = {
   title: string;
@@ -21,6 +25,7 @@ export type ProjectProps = {
 };
 
 export default function PortfolioCards() {
+  const { projects, isLoading } = useProjects();
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -34,27 +39,10 @@ export default function PortfolioCards() {
     },
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [projects, setProjects] = useState<any>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchInitialProjects = async () => {
-      try {
-        const initialProjects = await fetchProjects();
-        setProjects(initialProjects);
-        setLoading(false);
-      } catch (err) {
-        setError("Failed to fetch projects");
-        console.log(err);
-        setLoading(false);
-      }
-    };
-
-    fetchInitialProjects();
-  }, []);
-
-  function getLatestNews(initialProjects: ProjectProps[]) {
+  function getLatestNews(initialProjects: Project[]) {
     // Step 1: Sort the articles by date
     const sortedProject = initialProjects.sort((a: any, b: any) => {
       const dateA: any = new Date(a.createdAt);
@@ -68,7 +56,9 @@ export default function PortfolioCards() {
     return latestProject;
   }
   const finalProjects = getLatestNews(projects);
-
+  if (isLoading) {
+    return <ProjectSkeleton />;
+  }
   return (
     <motion.div
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"

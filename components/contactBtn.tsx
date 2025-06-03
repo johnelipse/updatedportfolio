@@ -12,14 +12,14 @@ export default function ContactComp() {
   return (
     <Link
       href="https://wa.me/message/AAMYVSAYB4YOC1"
-      className="fixed bottom-8 right-6 z-50"
+      className="fixed bottom-[4rem] right-4 z-50"
     >
       <motion.div
         className="bg-[#25D366] relative rounded-full shadow-lg overflow-hidden flex items-center cursor-pointer"
-        initial={{ width: "60px", height: "60px" }}
+        initial={{ width: "40px", height: "40px" }}
         animate={{
-          width: isHovered ? "240px" : "60px",
-          height: "60px",
+          width: isHovered ? "240px" : "40px",
+          height: "40px",
         }}
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -27,7 +27,7 @@ export default function ContactComp() {
         onHoverEnd={() => setIsHovered(false)}
       >
         <div className="flex items-center w-full">
-          <div className="flex-shrink-0 w-[60px] h-[60px] flex items-center justify-center">
+          <div className="flex-shrink-0 w-[40px] h-[40px] flex items-center justify-center">
             <MessageCircle className="w-8 h-8 text-white" />
           </div>
           <motion.div

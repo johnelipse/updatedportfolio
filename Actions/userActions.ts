@@ -1,7 +1,7 @@
 "use server";
 import { db } from "@/lib/db";
 import { UserProps } from "@/types/type";
-import bcrypt from "bcrypt";
+import { hashSync, compareSync } from "bcrypt-ts";
 import toast from "react-hot-toast";
 
 export async function createUser(data: UserProps) {
@@ -16,7 +16,7 @@ export async function createUser(data: UserProps) {
       status: 409,
     };
   }
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = hashSync(password, 10);
   const newUser = await db.user.create({
     data: { firstName, lastName, email, imageUrl, password: hashedPassword },
   });
@@ -70,10 +70,7 @@ export async function updateUserPassword(
     }
 
     // Verify current password
-    const isPasswordValid = await bcrypt.compare(
-      currentPassword,
-      user.password
-    );
+    const isPasswordValid = compareSync(currentPassword, user.password);
 
     if (!isPasswordValid) {
       toast.error("Current password is incorrect");
@@ -81,7 +78,7 @@ export async function updateUserPassword(
     }
 
     // Check if the new password is different from the current password
-    const isNewPasswordSame = await bcrypt.compare(newPassword, user.password);
+    const isNewPasswordSame = compareSync(newPassword, user.password);
 
     if (isNewPasswordSame) {
       toast.error("New password must be different from the current password");
@@ -92,7 +89,7 @@ export async function updateUserPassword(
     }
 
     // Hash the new password
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const hashedPassword = hashSync(newPassword, 10);
 
     // Update the user's password
     await db.user.update({

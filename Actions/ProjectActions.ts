@@ -1,6 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { QueriesResponse, SingleQueryResponse } from "@/types/type";
 // import { ProjectProps } from "@/types/type";
 import { revalidatePath } from "next/cache";
 
@@ -28,29 +29,37 @@ export default async function addProject(data: ProjectProps) {
   }
 }
 
-export async function fetchProjects() {
+export async function fetchProjects(): Promise<QueriesResponse> {
   try {
     const fetchedProjects = await db.project.findMany({
       orderBy: {
         createdAt: "desc",
       },
     });
-    return fetchedProjects;
+    return { data: fetchedProjects };
   } catch (error) {
     console.log(error);
+    return {
+      data: [],
+      error: "Something went wrong.",
+    };
   }
 }
 
-export async function getSingleProject(id: string) {
+export async function getSingleProject(id: string):Promise<SingleQueryResponse> {
   try {
     const fetchedProject = await db.project.findUnique({
       where: {
         id,
       },
     });
-    return fetchedProject;
+    return {data:fetchedProject};
   } catch (error) {
     console.log(error);
+    return{
+      data:null,
+      error:"Something went wrong"
+    }
   }
 }
 

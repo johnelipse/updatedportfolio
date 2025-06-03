@@ -36,7 +36,7 @@ export default async function page({
     : gottenProject;
   return (
     <div>
-      <CreateProject userData={userData} />
+      <CreateProject userData={userData} oldId={id} />
     </div>
   );
 }

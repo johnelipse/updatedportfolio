@@ -6,7 +6,7 @@ import { Github, ExternalLink, Contact } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { Project } from "@prisma/client";
+import { useProjects } from "@/hooks/useProjects";
 
 export type ProjectProps = {
   title: string;
@@ -18,9 +18,9 @@ export type ProjectProps = {
   imageUrl: string;
 };
 
-export default function ProjectsPage({ projects }: { projects: Project[] }) {
+export default function ProjectsPage() {
+  const { projects, isLoading } = useProjects();
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-
   useEffect(() => {
     const updateCursorPosition = (e: MouseEvent) => {
       setCursorPosition({ x: e.clientX, y: e.clientY });
@@ -28,7 +28,13 @@ export default function ProjectsPage({ projects }: { projects: Project[] }) {
     window.addEventListener("mousemove", updateCursorPosition);
     return () => window.removeEventListener("mousemove", updateCursorPosition);
   }, []);
-
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center bg-black min-h-screen w-screen">
+        <p className="text-slate-200 animate-pulse text-lg">Loading...</p>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen overflow-hidden relative">
       <div className="absolute inset-0 bg-[#131418ff]" />
@@ -43,7 +49,7 @@ export default function ProjectsPage({ projects }: { projects: Project[] }) {
         />
         <main className="flex-grow container mx-auto px-4 py-12 max-w-4xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {projects.map((project, index) => (
+            {projects?.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}

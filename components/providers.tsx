@@ -10,7 +10,7 @@ export default function ProvidersComp({ children }: { children: ReactNode }) {
   return (
     <Provider>
       <SessionProvider>
-        <LoadingWrapper>{children}</LoadingWrapper>
+        <LoadingWrapper> {children}</LoadingWrapper>
       </SessionProvider>
       <Toaster position="top-right" reverseOrder={false} />
     </Provider>

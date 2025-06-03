@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import { useProject } from "@/hooks/useProjects";
 
 export const description =
   "A product edit page. The product edit page has a form to edit the product details, stock, product category, product status, and product images. The product edit page has a sidebar navigation and a main content area. The main content area has a form to edit the product details, stock, product category, product status, and product images. The sidebar navigation has links to product details, stock, product category, product status, and product images.";
@@ -22,7 +23,7 @@ export type ProjectProps = {
   description: string;
   id?: string;
   slug: string;
-  gitLink?: string | undefined;
+  gitLink?: string;
   liveLink: string;
   imageUrl: string;
   createdAt?: Date;
@@ -30,13 +31,30 @@ export type ProjectProps = {
   userId?: string;
 };
 
-export function CreateProject({ userData }: { userData?: ProjectProps }) {
+export function CreateProject({
+  userData,
+  oldId,
+}: {
+  userData?: ProjectProps;
+  oldId?: string;
+}) {
+  const { project } = useProject(oldId as string);
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<ProjectProps>({ defaultValues: userData });
+  } = useForm<ProjectProps>({
+    defaultValues: {
+      title: project?.title,
+      description: project?.description as string,
+      slug: project?.slug,
+      gitLink: project?.gitLink as string,
+      liveLink: project?.liveLink,
+      imageUrl: project?.imageUrl,
+      userId: project?.userId as string,
+    },
+  });
   const [imageUrl, setImageUrl] = useState(
     userData?.imageUrl || "/profile2.jpg"
   );
